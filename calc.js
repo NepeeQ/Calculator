@@ -6,6 +6,7 @@ const dotBtn = document.querySelector("#dot");
 const equalBtn = document.querySelector("#equal");
 const screen = document.querySelector("#screenContent");
 
+const DEFAULT_BUTTON_COLOR = "rgb(219, 216, 211)";
 
 let firstNumber = "";
 let secondNumber = "";
@@ -35,15 +36,50 @@ for (let i = 0; i < digitsBtns.length; i++) {
     });
 }
 
+dotBtn.addEventListener("click", function()
+{
+    if(!operationState)
+    {
+        if(!firstNumber.includes("."))
+        {
+            if(firstNumber.length == 0)
+            {
+                firstNumber += "0";
+            }
+            firstNumber += ".";
+            updateScreen(firstNumber);
+        }
+    }
+    else{
+        if(!secondNumber.includes("."))
+        {
+            if(secondNumber.length == 0)
+            {
+                secondNumber += "0";
+            }
+            secondNumber += "."
+            updateScreen(secondNumber)
+        }
+    }
+})
+
 for (let i = 0; i < operationBtns.length; i++)
 {
     operationBtns[i].addEventListener("click", function()
     {
         if (firstNumber.length != 0)
         {
-            operationBtns[i].style.backgroundColor = "darkgray";
-            currentOperationType = operationBtns[i];
-            operationState = true;
+            if (!operationState)
+            {
+                operationBtns[i].style.backgroundColor = "darkgray";
+                currentOperationType = operationBtns[i];
+                operationState = true;
+            }
+            else{
+                evaluate();
+                operationBtns[i].style.backgroundColor = "darkgray";
+                currentOperationType = operationBtns[i];
+            }
         }
     })
 }
@@ -146,6 +182,6 @@ function substract(num1, num2)
 
  function clearOperation()
  {
-    currentOperationType.style.backgroundColor = "white" // change to correct
+    currentOperationType.style.backgroundColor = DEFAULT_BUTTON_COLOR // change to correct
     currentOperationType = {};
  }

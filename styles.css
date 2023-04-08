@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family:Verdana, Geneva, Tahoma, sans-serif
 }
 
 body{
@@ -11,18 +12,20 @@ body{
 .calculator{
     margin-right: auto;
     margin-left: auto;
+    margin-top: 40px;
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 500px;
     background-color: darkgray;
     border-radius: 5px;
+    padding: 10px;
 }
 
 .screen{
     background-color: rgb(94, 93, 93);
     color:white;
-    width: 80%;
+    width: 90%;
     height: 100px;
     margin-top: 10px;
     margin-bottom: 10px;
@@ -36,7 +39,7 @@ body{
     font-size: 1.5rem;
 }
 .buttons{
-    width: 80%;
+    width: 90%;
     height: 300px;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -45,6 +48,15 @@ body{
     grid-row-gap: 0px;
     margin-bottom: 10px;
 }
+.buttons button{
+    background-color: rgb(219, 216, 211);
+}
 .erase{
     grid-column:span 2;
+}
+#clear{
+    background-color: rgb(243, 185, 24);
+}
+#del{
+    background-color: rgb(53, 101, 232);
 }

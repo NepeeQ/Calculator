@@ -86,8 +86,9 @@ for (let i = 0; i < operationBtns.length; i++)
 
 clearBtn.addEventListener("click", clearCalc);
 
-function clearCalc()
+function clearCalc(e)
 {
+    
     if (!operationState)
     {
         firstNumber = "";
@@ -123,14 +124,18 @@ function deleteChar(){
 
 equalBtn.addEventListener("click", evaluate)
 
-function evaluate(){
-
+function evaluate(e){
     if (currentOperationType.name == "div")
     {
         firstNumber = divide(Number(firstNumber), Number(secondNumber));
         updateScreen(firstNumber)
         secondNumber = "";
         clearOperation();
+        if(e)
+        {
+            operationState = false;
+            firstNumber = "";
+        }
     }
     else if (currentOperationType.name == "multiply")
     {
@@ -138,6 +143,11 @@ function evaluate(){
         updateScreen(firstNumber);
         secondNumber = "";
         clearOperation();
+        if(e)
+        {
+            operationState = false;
+            firstNumber = "";
+        }
     }
     else if(currentOperationType.name == "minus")
     {
@@ -145,13 +155,24 @@ function evaluate(){
         updateScreen(firstNumber);
         secondNumber = "";
         clearOperation();
+        if(e)
+        {
+            operationState = false;
+            firstNumber = "";
+        }
     }
     else if(currentOperationType.name == "plus")
     {
         firstNumber = add(Number(firstNumber), Number(secondNumber));
         updateScreen(firstNumber);
         secondNumber = "";
+
         clearOperation();
+        if(e)
+        {
+            operationState = false;
+            firstNumber = "";
+        }
     }
 }
 
@@ -185,3 +206,7 @@ function substract(num1, num2)
     currentOperationType.style.backgroundColor = DEFAULT_BUTTON_COLOR // change to correct
     currentOperationType = {};
  }
+
+
+
+ //Bug when pressing equal and doing another operation (operation not registering again)

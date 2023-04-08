@@ -209,4 +209,4 @@ function substract(num1, num2)
 
 
 
- //Bug when pressing equal and doing another operation (operation not registering again)
+ 
